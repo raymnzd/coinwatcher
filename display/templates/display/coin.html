@@ -1,0 +1,17 @@
+{% extends "display/base.html" %}
+
+{% block title %}
+  <title> Coin Watcher | {{ id }}</title>
+
+{% endblock %}
+
+
+{% block content %}
+  <div class="page-header m-4">
+    <h1> {{ id }} </h1>
+  </div>
+  <p class = "p-2 m-4">
+    <!-- Mark as safe so html correctly shown -->
+    {{ description|safe }}
+  </p>
+{% endblock %}

@@ -21,16 +21,14 @@
         <tbody>
           {% for idx, crypto in currencies.items %}
             <tr>
-              <th scope="row"> {{ crypto.name }}</th>
+              <th scope="row"> <a href="{%url 'home-crypto' idx%}"> {{crypto.name}}</a></th>
               <td> ${{ crypto.market_cap|intcomma }}</td>
               <td> {{ crypto.total_volume }}</td>
               <td> ${{ crypto.current_price|intcomma }}</td>
-
             </tr>
           {% endfor %}
         </tbody>
     </table>
   </div>
 </div>
-
 {% endblock %}
