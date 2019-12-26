@@ -1,4 +1,13 @@
 body{
-  background:#CFD850
-;
+  background:#fff;
+}
+
+.table{
+  margin:auto;
+}
+
+#dtable{
+  margin:auto;
+  text-align:center;
+  margin-top:2%;
 }
