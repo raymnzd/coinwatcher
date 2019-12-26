@@ -1,0 +1,32 @@
+{% extends "display/base.html" %}
+{% load humanize %}
+{% block title%}
+  <title>Coin Watcher</title>
+{% endblock %}
+
+{% block content %}
+
+<h1>Cryptocurrencies</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Market Cap</th>
+      <th scope="col">Total Volume</th>
+      <th scope="col">Current Price</th>
+    </tr>
+  </thead>
+    <tbody>
+      {% for idx, crypto in currencies.items %}
+        <tr>
+          <th scope="row"> {{ crypto.name }}</th>
+          <td> ${{ crypto.market_cap|intcomma }}</td>
+          <td> {{ crypto.total_volume }}</td>
+          <td> ${{ crypto.current_price|intcomma }}</td>
+
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
