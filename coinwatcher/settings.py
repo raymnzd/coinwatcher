@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'display.apps.DisplayConfig',
     'django.contrib.humanize', #formats large numbers
-    
+    'crispy_forms', #style forms
+
 
 ]
 
@@ -122,3 +123,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+LOGIN_REDIRECT_URL = 'list-page'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
