@@ -3,7 +3,12 @@ from django.http import HttpResponse
 from .cryptodata import CryptoData
 from operator import *
 
-def home(request):
+
+
+def index(request):
+    return render(request, 'display/index.html')
+
+def listcoins(request):
     crypto_data = CryptoData()
     c_list = crypto_data.get_currencies()
     currencies = dict()
@@ -21,7 +26,7 @@ def home(request):
     context = {
         'currencies' : currencies
     }
-    return render(request, 'display/index.html', context)
+    return render(request, 'display/list.html', context)
 
 
 def test(request):
@@ -29,7 +34,7 @@ def test(request):
 
 
 
-def test2(request, cryptoname =''):
+def coin(request, cryptoname =''):
     crypto_data = CryptoData()
     c_list = crypto_data.get_currencies()
     try:

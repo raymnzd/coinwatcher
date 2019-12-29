@@ -2,16 +2,22 @@
 
 {% block title %}
   <title> Coin Watcher | {{ id }}</title>
-
 {% endblock %}
 
+{% block nav-title %} {{ id }} {% endblock %}
 
 {% block content %}
-  <div class="page-header m-4">
-    <h1> {{ id }} </h1>
+<div class="row p-4">
+    <div class="col-md-8 text-justify">
+      <!-- Mark as safe so html correctly shown -->
+      {{ description|safe }}
+    </div>
+    <div class="col-md-4">
+      <div class="content-section">
+
+      </div>
+    </div>
   </div>
-  <p class = "p-2 m-4">
-    <!-- Mark as safe so html correctly shown -->
-    {{ description|safe }}
-  </p>
+
+
 {% endblock %}
