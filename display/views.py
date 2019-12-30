@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .cryptodata import CryptoData
+from django.contrib.auth.decorators import login_required
 from operator import *
 
 
@@ -33,7 +34,6 @@ def test(request):
 	return HttpResponse('<h1> test page </h1>')
 
 
-
 def coin(request, cryptoname =''):
     crypto_data = CryptoData()
     c_list = crypto_data.get_currencies()
@@ -47,3 +47,9 @@ def coin(request, cryptoname =''):
         'description' : coin_data['description']['en'],
     }
     return render(request, 'display/coin.html', context)
+
+
+
+@login_required(login_url='login')
+def portfolio(request):
+    return render(request, 'display/portfolio.html')
