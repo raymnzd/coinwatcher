@@ -12,6 +12,10 @@ def index(request):
 
 
 def register(request):
+    #if user is already logged in, go to list page
+    if request.user.is_authenticated:
+        return redirect('list-page')
+
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -22,6 +26,7 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'display/register.html', {'form':form})
 
+#list cryptocurrencies in table
 def listcoins(request):
     crypto_data = CryptoData()
     c_list = crypto_data.get_currencies()
@@ -61,7 +66,7 @@ def coin(request, cryptoname =''):
     }
     return render(request, 'display/coin.html', context)
 
-
+#only allow user to go to portfolio page if logged in
 @login_required(login_url='login')
 def portfolio(request):
     return render(request, 'display/portfolio.html')
