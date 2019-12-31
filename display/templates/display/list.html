@@ -1,5 +1,12 @@
 {% extends "display/base.html" %}
 {% load humanize %}
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'display/main.css'%}?{% now "U" %}">
+  <link rel="stylesheet" href="{% static 'display/list.css'%}?{% now "U" %}">
+{% endblock %}
+
 {% block title%}
   <title>Coin Watcher</title>
 {% endblock %}
@@ -7,13 +14,13 @@
 {% block content %}
 <div class="row">
   <div class="col-md-6 offset-md-3">
-    <table class="table table-hover table-bordered table-dark">
-      <thead class = "thead-dark">
+    <table class="table table-hover table-bordered">
+      <thead class = "">
         <tr>
           <th class = "th-top" scope="col">Name</th>
-          <th scope="col">Market Cap</th>
-          <th scope="col">Total Volume</th>
-          <th scope="col">Current Price</th>
+          <th class = "th-top" scope="col">Market Cap</th>
+          <th class = "th-top" scope="col">Total Volume</th>
+          <th class = "th-top" scope="col">Current Price</th>
         </tr>
       </thead>
         <tbody>
@@ -21,7 +28,7 @@
             <tr>
               <th scope="row"> <a href="{%url 'crypto-page' idx%}"> {{crypto.name}}</a></th>
               <td> ${{ crypto.market_cap|intcomma }}</td>
-              <td> {{ crypto.total_volume }}</td>
+              <td> ${{ crypto.total_volume|intcomma }}</td>
               <td> ${{ crypto.current_price|intcomma }}</td>
             </tr>
           {% endfor %}

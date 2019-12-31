@@ -1,0 +1,39 @@
+{% load static %}
+
+.info-section{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  margin-top:350px;
+  margin-left: 50px;
+}
+
+.info{
+  color:#FFFF00;
+  display: block;
+  position: relative;
+  text-align: center;
+}
+
+.info p{
+  font-size: 30px;
+  width:400px;
+  word-wrap: normal;
+}
+
+body:after{
+  height:100vh;
+  content: "";
+  background:url("background.jpeg")no-repeat center center/cover;
+    opacity: 0.98;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.btn a{
+  color:#FFFF00;
+}

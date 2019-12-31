@@ -1,0 +1,21 @@
+.table{
+  margin-top:20px;
+}
+
+tr td{
+  color:#58aed1;
+}
+
+th a{
+  color:black;
+}
+
+th a:hover{
+  color:black;
+}
+
+
+
+body{
+  color:black;
+}

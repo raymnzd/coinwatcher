@@ -1,13 +1,26 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .cryptodata import CryptoData
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from operator import *
 
 
 
 def index(request):
     return render(request, 'display/index.html')
+
+
+def register(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            return redirect('list-page')
+    else:
+        form = UserCreationForm()
+    return render(request, 'display/register.html', {'form':form})
 
 def listcoins(request):
     crypto_data = CryptoData()
@@ -47,7 +60,6 @@ def coin(request, cryptoname =''):
         'description' : coin_data['description']['en'],
     }
     return render(request, 'display/coin.html', context)
-
 
 
 @login_required(login_url='login')

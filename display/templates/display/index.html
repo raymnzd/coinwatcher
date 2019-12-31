@@ -1,9 +1,22 @@
 {% extends "display/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'display/main.css'%}?{% now "U" %}">
+  <link rel="stylesheet" href="{% static 'display/index.css'%}?{% now "U" %}">
+{% endblock %}
+
 {% block title%}
   <title>Coin Watcher</title>
 {% endblock %}
 
 {% block content %}
-
+  <section class = "info-section">
+    <div class = "info">
+      <h1>Coin Watcher</h1>
+      <p> Keep up to date with the latest cryptocurrency prices</p>
+      <b class = "btn btn-primary"> <a href="{% url 'register' %}">Get Started </a></b>
+    </div>
+  </section>
 {% endblock %}
