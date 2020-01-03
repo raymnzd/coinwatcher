@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .cryptodata import CryptoData
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from .forms import UserRegistrationForm
 from operator import *
 
 
@@ -17,13 +18,13 @@ def register(request):
         return redirect('list-page')
 
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
             return redirect('list-page')
     else:
-        form = UserCreationForm()
+        form = UserRegistrationForm()
     return render(request, 'display/register.html', {'form':form})
 
 #list cryptocurrencies in table
