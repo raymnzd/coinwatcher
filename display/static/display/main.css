@@ -1,4 +1,6 @@
-
+*{
+  font-family: 'Roboto Condensed', sans-serif;
+}
 
 body{
   /*background: #F0F2F0;  /* fallback for old browsers */
