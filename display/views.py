@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .cryptodata import CryptoData
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm, AddCryptoForm
 from operator import *
 
 
@@ -60,10 +60,11 @@ def coin(request, cryptoname =''):
         coin_data = crypto_data.get_coin_info(cryptoname)
     except ValueError:
         return HttpResponse(f'<h1> {cryptoname} not found </h1>')
-
+    form = AddCryptoForm()
     context = {
         'id' : coin_data['id'].capitalize(),
         'description' : coin_data['description']['en'],
+        'form' : form
     }
     return render(request, 'display/coin.html', context)
 
