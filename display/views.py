@@ -54,6 +54,12 @@ def test(request):
 
 
 def coin(request, cryptoname =''):
+    if request.method == "POST":
+        form = AddCryptoForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data.get('add_amount'))
+        return redirect('test-page')
+
     crypto_data = CryptoData()
     c_list = crypto_data.get_currencies()
     try:

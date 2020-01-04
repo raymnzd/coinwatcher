@@ -14,7 +14,11 @@
     </div>
     <div class="col-md-4">
       <div class="content-section">
-        {{ form|crispy }}
+        <form method="POST">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <button class = "btn btn-outline-info" type = "submit">Add To Portfolio</button>
+        </form>
       </div>
     </div>
   </div>
