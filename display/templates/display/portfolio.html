@@ -1,6 +1,10 @@
 {% extends "display/base.html"%}
+{% load static %}
 
 
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'display/main.css'%}?{% now "U" %}">
+{% endblock %}
 {% block content %}
 <h1>
   Portfolio
