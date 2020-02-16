@@ -4,12 +4,12 @@
   display:flex;
   align-items: center;
   justify-content: center;
-  margin-top:350px;
+  margin-top:200px;
   margin-left: 50px;
 }
 
 .info{
-  color:#FFFFFF;
+  color:#436782;
   display: block;
   position: relative;
   text-align: center;
@@ -24,7 +24,7 @@
 body:after{
   height:100vh;
   content: "";
-  background:url("background.jpeg")no-repeat center center/cover;
+  background:url("background.jpg");
     opacity: 0.98;
     top: 0;
     left: 0;
@@ -35,5 +35,5 @@ body:after{
 }
 
 .btn a{
-  color:#FFFF00;
+  color:#d4e6f3;
 }
