@@ -13,6 +13,7 @@ class Portfolio(models.Model):
 
 
 class Coin(models.Model):
+    owner = models.ForeignKey(Portfolio, on_delete = models.CASCADE)
     name_of_coin = models.CharField(max_length = 100)
     amount_holding = models.IntegerField(default = 0)
 
