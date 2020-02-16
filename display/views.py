@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from .cryptodata import CryptoData
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login
 from .forms import UserRegistrationForm, AddCryptoForm
+from .models import Portfolio, Coin
 from operator import *
 
 
@@ -21,7 +23,12 @@ def register(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
+            #get the username and password
+            username = request.POST['username']
+            password = request.POST['password1']
+            #authenticate user then login
+            user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'],)
+            login(request, user)
             return redirect('list-page')
     else:
         form = UserRegistrationForm()
@@ -58,6 +65,8 @@ def coin(request, cryptoname =''):
         form = AddCryptoForm(request.POST)
         if form.is_valid():
             print(form.cleaned_data.get('add_amount'))
+            portfolio = Portfolio.objects.get(user=request.user)
+            print(Coin.objects.filter(owner=portfolio))
         return redirect('test-page')
 
     crypto_data = CryptoData()
