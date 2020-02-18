@@ -37,3 +37,8 @@ body:after{
 .btn a{
   color:#d4e6f3;
 }
+
+h1{
+  font-size:60px;
+  font-family: 'Roboto Condensed', sans-serif;
+}
