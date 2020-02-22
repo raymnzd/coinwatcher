@@ -65,10 +65,14 @@ def coin(request, cryptoname =''):
         form = AddCryptoForm(request.POST)
         if form.is_valid():
             portfolio = Portfolio.objects.get(user=request.user)
-            c = Coin.objects.filter(owner=portfolio, name_of_coin = cryptoname)[0]
-            c.amount_holding += form.cleaned_data.get('add_amount')
-            c.save()
-            print("has",c.amount_holding,cryptoname)
+            add_amount = form.cleaned_data.get('add_amount')
+            c = Coin.objects.get(owner=portfolio, name_of_coin = cryptoname)
+            if c:
+                c.amount_holding += add_amount
+                c.save()
+                print(c.amount_holding, "is being held")
+            else:
+                Coin.objects.create(owner=portfolio, name_of_coin=cryptoname, amount_holding=add_amount)
         return redirect('test-page')
 
     crypto_data = CryptoData()
