@@ -66,12 +66,13 @@ def coin(request, cryptoname =''):
         if form.is_valid():
             portfolio = Portfolio.objects.get(user=request.user)
             add_amount = form.cleaned_data.get('add_amount')
-            c = Coin.objects.get(owner=portfolio, name_of_coin = cryptoname)
-            if c:
+
+            try:
+                c = Coin.objects.get(owner=portfolio, name_of_coin = cryptoname)
                 c.amount_holding += add_amount
                 c.save()
-                print(c.amount_holding, "is being held")
-            else:
+                print(c.amount_holding, cryptoname, "is being held by", portfolio)
+            except Coin.DoesNotExist:
                 Coin.objects.create(owner=portfolio, name_of_coin=cryptoname, amount_holding=add_amount)
         return redirect('test-page')
 
