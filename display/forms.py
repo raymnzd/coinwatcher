@@ -15,4 +15,4 @@ class UserRegistrationForm(UserCreationForm):
 
 
 class AddCryptoForm(forms.Form):
-    add_amount = forms.IntegerField()
+    add_amount = forms.DecimalField()
