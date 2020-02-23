@@ -8,11 +8,8 @@ from .forms import UserRegistrationForm, AddCryptoForm
 from .models import Portfolio, Coin
 from operator import *
 
-
-
 def index(request):
     return render(request, 'display/index.html')
-
 
 def register(request):
     #if user is already logged in, go to list page
@@ -39,7 +36,7 @@ def listcoins(request):
     crypto_data = CryptoData()
     c_list = crypto_data.get_currencies()
     currencies = dict()
-    for i in range(25):
+    for i in range(len(c_list)):
         currencies[c_list[i]['id']] = {
             'name' : c_list[i]['name'],
             'market_cap' : c_list[i]['market_cap'],
@@ -93,4 +90,11 @@ def coin(request, cryptoname =''):
 #only allow user to go to portfolio page if logged in
 @login_required(login_url='login')
 def portfolio(request):
-    return render(request, 'display/portfolio.html')
+    portfolio = Portfolio.objects.get(user=request.user)
+    coins = Coin.objects.filter(owner=portfolio)
+    for coin in coins:
+        print(coin.name_of_coin, coin.amount_holding)
+    context = {
+        'coins' : coins
+    }
+    return render(request, 'display/portfolio.html', context)
