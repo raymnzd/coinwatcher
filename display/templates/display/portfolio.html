@@ -1,13 +1,27 @@
 {% extends "display/base.html"%}
 {% load static %}
 
-
 {% block styles %}
   <link rel="stylesheet" href="{% static 'display/main.css'%}?{% now "U" %}">
+  <link rel="stylesheet" href="{% static 'display/list.css'%}?{% now "U" %}">
 {% endblock %}
+
 {% block content %}
-<h1>
-  Portfolio
-</h1>
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <table id = "coin-table" class="table table-hover table-bordered">
+      <thead class = "">
+        <tr>
+          <th class = "th-top" scope="col">Name</th>
+          <th class = "th-top" scope="col">Current Price</th>
+          <th class = "th-top" scope="col">Own</th>
+        </tr>
+      </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+  </div>
+</div>
 
 {% endblock %}

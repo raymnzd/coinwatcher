@@ -10,8 +10,11 @@ class CryptoData:
 
 
     def get_history(self, coin):
-        return self.cg.get_coin_history_by_id(id = coin, date = '30-12-2017')
+        return self.cg.get_coin_history_by_id(id=coin, date='30-12-2017')
 
 
     def get_coin_info(self,coin):
         return self.cg.get_coin_by_id(coin)
+
+    def get_coin_price(self, coin):
+        return self.cg.get_price(id=coin, vs_currency='usd')
