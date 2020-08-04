@@ -24,9 +24,10 @@
         </tr>
       </thead>
         <tbody>
-          {% for idx, crypto in currencies.items %}
+          <!-- cname different from crypto.name because of coingecko api -->
+          {% for cname, crypto in currencies.items %}
             <tr>
-              <th scope="row"> <a href="{%url 'crypto-page' idx%}"> {{crypto.name}}</a></th>
+              <th scope="row"> <a href="{%url 'crypto-page' cname%}"> {{crypto.name}}</a></th>
               <td> ${{ crypto.market_cap|intcomma }}</td>
               <td> ${{ crypto.total_volume|intcomma }}</td>
               <td> ${{ crypto.current_price|intcomma }}</td>
