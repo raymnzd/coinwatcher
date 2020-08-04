@@ -35,7 +35,10 @@ def register(request):
 def listcoins(request):
     crypto_data = CryptoData()
     c_list = crypto_data.get_currencies()
+    print('c_list[0]:', c_list[0])
     currencies = dict()
+
+    #key for currencies is going to be the id from coingecko api
     for i in range(len(c_list)):
         currencies[c_list[i]['id']] = {
             'name' : c_list[i]['name'],
@@ -47,6 +50,8 @@ def listcoins(request):
 
 	#sort currencies by market cap rank
     currencies = dict(sorted(currencies.items(),key=lambda x:getitem(x[1],'market_cap_rank')))
+    for i in range(1):
+        print('currencies[0]:',currencies['bitcoin'])
     context = {
         'currencies' : currencies
     }
