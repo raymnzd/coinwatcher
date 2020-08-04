@@ -52,6 +52,18 @@ def listcoins(request):
     }
     return render(request, 'display/list.html', context)
 
+#only allow user to go to portfolio page if logged in
+@login_required(login_url='login')
+def portfolio(request):
+    portfolio = Portfolio.objects.get(user=request.user)
+    coins = Coin.objects.filter(owner=portfolio)
+    for coin in coins:
+        print(coin.name_of_coin, coin.amount_holding)
+    context = {
+        'coins' : coins
+    }
+    return render(request, 'display/portfolio.html', context)
+
 
 def test(request):
 	return HttpResponse('<h1> test page </h1>')
@@ -88,15 +100,3 @@ def coin(request, cryptoname =''):
         'form' : form
     }
     return render(request, 'display/coin.html', context)
-
-#only allow user to go to portfolio page if logged in
-@login_required(login_url='login')
-def portfolio(request):
-    portfolio = Portfolio.objects.get(user=request.user)
-    coins = Coin.objects.filter(owner=portfolio)
-    for coin in coins:
-        print(coin.name_of_coin, coin.amount_holding)
-    context = {
-        'coins' : coins
-    }
-    return render(request, 'display/portfolio.html', context)
