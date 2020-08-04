@@ -71,7 +71,9 @@ def coin(request, cryptoname =''):
                 print(c.amount_holding, cryptoname, "is being held by", portfolio)
             except Coin.DoesNotExist:
                 Coin.objects.create(owner=portfolio, name_of_coin=cryptoname, amount_holding=add_amount)
-        return redirect('test-page')
+
+        # REDIRECT TO PORTFOLIO FOR NOW, MAYBE MAKE INTERMIDIATE PAGE LATER
+        return redirect('portfolio-page')
 
     crypto_data = CryptoData()
     c_list = crypto_data.get_currencies()
