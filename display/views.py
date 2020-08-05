@@ -65,7 +65,8 @@ def portfolio(request):
     crypto_data = CryptoData()
     for coin in coins:
         # print(coin.name_of_coin, coin.amount_holding)
-        print(crypto_data.get_coin_price(coin.name_of_coin))
+        data = crypto_data.get_coin_price(coin.name_of_coin)
+        print(coin.name_of_coin, data[coin.name_of_coin]['usd'] * float(coin.amount_holding))
 
 
     context = {
