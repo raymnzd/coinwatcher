@@ -62,8 +62,12 @@ def listcoins(request):
 def portfolio(request):
     portfolio = Portfolio.objects.get(user=request.user)
     coins = Coin.objects.filter(owner=portfolio)
+    crypto_data = CryptoData()
     for coin in coins:
-        print(coin.name_of_coin, coin.amount_holding)
+        # print(coin.name_of_coin, coin.amount_holding)
+        print(crypto_data.get_coin_price(coin.name_of_coin))
+
+
     context = {
         'coins' : coins
     }

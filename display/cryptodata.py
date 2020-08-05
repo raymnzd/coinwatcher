@@ -17,4 +17,4 @@ class CryptoData:
         return self.cg.get_coin_by_id(coin)
 
     def get_coin_price(self, coin):
-        return self.cg.get_price(id=coin, vs_currency='usd')
+        return self.cg.get_price(ids=coin, vs_currencies='usd')
