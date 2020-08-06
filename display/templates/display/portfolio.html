@@ -19,12 +19,15 @@
         </tr>
       </thead>
         <tbody>
-          <tr>
-            <th scope="row"> <a href="{%url 'crypto-page' 'chainlink'%}"> chainlink</a></th>
-            <td> $5</td>
-            <td> 5</td>
-            <td> $25</td>
-          </tr>
+          {% for cname, crypto in holdings.items %}
+            <tr>
+              <th scope="row"> <a href="{%url 'crypto-page' cname%}"> {{crypto.name}}</a></th>
+              <td> ${{ crypto.current_price}}</td>
+              <td> ${{ crypto.owned }}</td>
+              <td> ${{ crypto.value }}</td>
+            </tr>
+          {% endfor %}
+        
         </tbody>
     </table>
   </div>

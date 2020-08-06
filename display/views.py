@@ -63,15 +63,22 @@ def portfolio(request):
     portfolio = Portfolio.objects.get(user=request.user)
     coins = Coin.objects.filter(owner=portfolio)
     crypto_data = CryptoData()
+    holdings = {}
     for coin in coins:
-        # print(coin.name_of_coin, coin.amount_holding)
         data = crypto_data.get_coin_price(coin.name_of_coin)
-        print(coin.name_of_coin, data[coin.name_of_coin]['usd'] * float(coin.amount_holding))
-
+        price = data[coin.name_of_coin]['usd']
+        value_held = price * float(coin.amount_holding)
+        holdings[coin.name_of_coin] = {
+            'name': coin.name_of_coin.capitalize(),
+            'current_price': data[coin.name_of_coin]['usd'],
+            'owned': coin.amount_holding,
+            'value': value_held
+        }
 
     context = {
-        'coins' : coins
+        'holdings' : holdings
     }
+    print(holdings)
     return render(request, 'display/portfolio.html', context)
 
 
