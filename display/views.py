@@ -71,7 +71,7 @@ def portfolio(request):
         holdings[coin.name_of_coin] = {
             'name': coin.name_of_coin.capitalize(),
             'current_price': data[coin.name_of_coin]['usd'],
-            'owned': coin.amount_holding,
+            'owned': float(coin.amount_holding),
             'value': value_held
         }
 
