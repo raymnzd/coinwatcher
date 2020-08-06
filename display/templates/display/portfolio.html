@@ -1,4 +1,5 @@
 {% extends "display/base.html"%}
+{% load humanize %}
 {% load static %}
 
 {% block styles %}
@@ -22,12 +23,12 @@
           {% for cname, crypto in holdings.items %}
             <tr>
               <th scope="row"> <a href="{%url 'crypto-page' cname%}"> {{crypto.name}}</a></th>
-              <td> ${{ crypto.current_price}}</td>
-              <td> ${{ crypto.owned }}</td>
-              <td> ${{ crypto.value }}</td>
+              <td> ${{ crypto.current_price|intcomma}}</td>
+              <td> ${{ crypto.owned|intcomma}}</td>
+              <td> ${{ crypto.value|intcomma}}</td>
             </tr>
           {% endfor %}
-        
+
         </tbody>
     </table>
   </div>
