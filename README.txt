@@ -10,4 +10,4 @@ Create an account and start adding coins to your portfolio !
 
 
 
-![example](/example-list.png)
+![example](https://raw.githubusercontent.com/rayz/coinwatcher/master/example-list.png)
