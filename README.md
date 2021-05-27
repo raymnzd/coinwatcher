@@ -7,3 +7,7 @@ Install requirements using:
 python manage.py runserver
 
 Create an account and start adding coins to your portfolio !
+![example](example.png)
+
+
+
