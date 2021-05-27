@@ -85,24 +85,26 @@ def portfolio(request):
 def test(request):
 	return HttpResponse('<h1> test page </h1>')
 
-
 def coin(request, cryptoname =''):
     if request.method == "POST":
-        form = AddCryptoForm(request.POST)
-        if form.is_valid():
-            portfolio = Portfolio.objects.get(user=request.user)
-            add_amount = form.cleaned_data.get('add_amount')
+        if request.user.is_authenticated:
+            form = AddCryptoForm(request.POST)
+            if form.is_valid():
+                portfolio = Portfolio.objects.get(user=request.user)
+                add_amount = form.cleaned_data.get('add_amount')
 
-            try:
-                c = Coin.objects.get(owner=portfolio, name_of_coin = cryptoname)
-                c.amount_holding += add_amount
-                c.save()
-                print(c.amount_holding, cryptoname, "is being held by", portfolio)
-            except Coin.DoesNotExist:
-                Coin.objects.create(owner=portfolio, name_of_coin=cryptoname, amount_holding=add_amount)
+                try:
+                    c = Coin.objects.get(owner=portfolio, name_of_coin = cryptoname)
+                    c.amount_holding += add_amount
+                    c.save()
+                    print(c.amount_holding, cryptoname, "is being held by", portfolio)
+                except Coin.DoesNotExist:
+                    Coin.objects.create(owner=portfolio, name_of_coin=cryptoname, amount_holding=add_amount)
 
-        # REDIRECT TO PORTFOLIO FOR NOW, MAYBE MAKE INTERMIDIATE PAGE LATER
-        return redirect('portfolio-page')
+            # REDIRECT TO PORTFOLIO FOR NOW, MAYBE MAKE INTERMIDIATE PAGE LATER
+            return redirect('portfolio-page')
+        else:
+            return redirect(register)
 
     crypto_data = CryptoData()
     c_list = crypto_data.get_currencies()
