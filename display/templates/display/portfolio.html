@@ -24,7 +24,7 @@
             <tr>
               <th scope="row"> <a href="{%url 'crypto-page' cname%}"> {{crypto.name}}</a></th>
               <td> ${{ crypto.current_price|intcomma}}</td>
-              <td> ${{ crypto.owned|intcomma}}</td>
+              <td>  {{ crypto.owned|intcomma}}</td>
               <td> ${{ crypto.value|intcomma}}</td>
             </tr>
           {% endfor %}
