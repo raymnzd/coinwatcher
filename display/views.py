@@ -8,6 +8,8 @@ from .forms import UserRegistrationForm, AddCryptoForm
 from .models import Portfolio, Coin
 from operator import *
 
+crypto_data = CryptoData()
+
 def index(request):
     return render(request, 'display/index.html')
 
@@ -33,7 +35,6 @@ def register(request):
 
 #list cryptocurrencies in table
 def listcoins(request):
-    crypto_data = CryptoData()
     c_list = crypto_data.get_currencies()
     print('c_list[0]:', c_list[0])
     currencies = dict()
@@ -62,7 +63,6 @@ def listcoins(request):
 def portfolio(request):
     portfolio = Portfolio.objects.get(user=request.user)
     coins = Coin.objects.filter(owner=portfolio)
-    crypto_data = CryptoData()
     holdings = {}
     for coin in coins:
         data = crypto_data.get_coin_price(coin.name_of_coin)
@@ -106,7 +106,6 @@ def coin(request, cryptoname =''):
         else:
             return redirect(register)
 
-    crypto_data = CryptoData()
     c_list = crypto_data.get_currencies()
     try:
         coin_data = crypto_data.get_coin_info(cryptoname)
