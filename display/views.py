@@ -44,7 +44,6 @@ def register(request):
 # list cryptocurrencies in table
 def listcoins(request):
     c_list = crypto_data.get_currencies()
-    print("c_list[0]:", c_list[0])
     currencies = dict()
 
     # key for currencies is going to be the id from coingecko api
@@ -61,8 +60,6 @@ def listcoins(request):
     currencies = dict(
         sorted(currencies.items(), key=lambda x: getitem(x[1], "market_cap_rank"))
     )
-    for i in range(1):
-        print("currencies[0]:", currencies["bitcoin"])
     context = {"currencies": currencies}
     return render(request, "display/list.html", context)
 
@@ -85,7 +82,6 @@ def portfolio(request):
         }
 
     context = {"holdings": holdings}
-    print(holdings)
     return render(request, "display/portfolio.html", context)
 
 
@@ -136,7 +132,6 @@ def coin(request, cryptoname=""):
         else:
             return redirect(register)
 
-    c_list = crypto_data.get_currencies()
     try:
         coin_data = crypto_data.get_coin_info(cryptoname)
     except ValueError:
