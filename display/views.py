@@ -1,12 +1,14 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .cryptodata import CryptoData
+from operator import *
+
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login
-from .forms import RemoveCryptoForm, UserRegistrationForm, AddCryptoForm
-from .models import Portfolio, Coin
-from operator import *
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+
+from .cryptodata import CryptoData
+from .forms import AddCryptoForm, RemoveCryptoForm, UserRegistrationForm
+from .models import Coin, Portfolio
 
 crypto_data = CryptoData()
 
