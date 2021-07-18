@@ -25,6 +25,7 @@ Displays cryptocurrency information on webpage using using Django and CoinGeckoA
 ### Docker
 * `docker build -t coin-watcher .`
 * `docker run -i -t -p 8000:8000 coin-watcher python3 manage.py runserver 0.0.0.0:8000`
+* Head to http://localhost:8000
 
 # Example
 ## Create an account and start adding coins to your portfolio !
