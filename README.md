@@ -28,7 +28,9 @@ Displays cryptocurrency information on webpage using using Django and CoinGeckoA
 
 # Example
 ## Create an account and start adding coins to your portfolio !
-![example](example.png)
+<p>
+  <img src="example.png" width="1000" height="455">
+</p>
 
 
 
