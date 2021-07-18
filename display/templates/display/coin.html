@@ -16,8 +16,14 @@
       <div class="content-section">
         <form method="POST">
           {% csrf_token %}
-          {{ form|crispy }}
-          <button class = "btn btn-outline-info" type = "submit">Add To Portfolio</button>
+          {{ add_form|crispy }}
+          <button class="btn btn-outline-info" type="submit" name="add" value="add">Add To Portfolio</button>
+        </form>
+        <br>
+        <form method="POST">
+          {% csrf_token %}
+          {{ remove_form|crispy }}
+          <button class="btn btn-outline-info" type="submit" name="remove" value="remove">Remove From Portfolio</button>
         </form>
       </div>
     </div>

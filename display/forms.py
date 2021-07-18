@@ -16,3 +16,6 @@ class UserRegistrationForm(UserCreationForm):
 
 class AddCryptoForm(forms.Form):
     add_amount = forms.DecimalField()
+    
+class RemoveCryptoForm(forms.Form):
+    remove_amount = forms.DecimalField()
