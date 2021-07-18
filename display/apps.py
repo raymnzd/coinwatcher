@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 
 class DisplayConfig(AppConfig):
-    name = 'display'
+    name = "display"
 
     def ready(self):
         import display.signals
