@@ -17,14 +17,15 @@ Displays cryptocurrency information on webpage using using Django and CoinGeckoA
 
 # Installation
 ### Virtual Environment
+* `Start redis (If on mac run 'brew services start redis')`
 * `python3 -m venv venv`
 * `source venv/bin/activate`
 * `pip3 install -r requirements.txt`
 * `python manage.py runserver`
 
 ### Docker
-* `docker build -t coin-watcher .`
-* `docker run -i -t -p 8000:8000 coin-watcher python3 manage.py runserver 0.0.0.0:8000`
+* `docker-compose run web django-admin startproject coinwatcher .`
+* `docker-compose up`
 * Head to http://localhost:8000
 
 # Example
